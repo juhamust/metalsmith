@@ -23,10 +23,9 @@ describe('Metalsmith', function(){
     assert(m instanceof Metalsmith)
   })
 
-  it('should error without a working directory', function(){
-    assert.throws(function(){
-      Metalsmith()
-    }, /You must pass a working directory path\./)
+  it('should default to process.cwd() if a working directory path is not specified', function(){
+    var m = Metalsmith()
+    assert.strictEqual(m.directory(), process.cwd())
   })
 
   it('should use `./src` as a default source directory', function(){
